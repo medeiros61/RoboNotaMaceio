@@ -2,7 +2,7 @@
 Usuario = 15042427856
 Senha = N4PG9K9E
 nomeArquivo = PLANILHA EMISSAO NOVA 2025-2.xlsx
-Valor_Aliquota = 2,00
+Valor_Aliquota = 3,23
 cnpj =56.422.742/0001-60
-tempoEspera = 5
-ambiente = Teste
+tempoEspera = 10
+ambiente = producao

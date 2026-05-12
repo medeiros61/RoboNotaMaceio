@@ -26,6 +26,11 @@ try:
   driver.get("https://maceio.giss.com.br/portal/#/login-portal")
   time.sleep(3)  # Aguarda o carregamento da página
 
+  popup = driver.find_element(By.XPATH, "/html/body/div[1]/div[4]/div/div/div[1]/button/span")
+  popup.click()
+
+  time.sleep(1)  # Aguarda o carregamento da página
+
   # Localiza e preenche o campo de usuário
   usuario_input = driver.find_element(By.ID, "usuario")
   usuario_input.send_keys(Usuario)
@@ -37,7 +42,9 @@ try:
   time.sleep(5)  # Aguarda o login ser processado
 
   # Clica no botão de login
-  login_button = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/form/div/div/div/div[4]/div/button")
+                                                    
+  login_button = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/form/div/div/div[3]/div/button")
+
   login_button.click()
   time.sleep(1)  # Aguarda o login ser processado
   if cnpj == "37.971.252/0001-78":
@@ -68,6 +75,7 @@ try:
     usecols=["CPF", "NOME", "CEP", "Nº", "VALOR", "DATA", "STATUS NF", "FORMA"],
     skiprows=1)
     # Itera sobre as linhas da planilha
+  i = 1
   for index, row in df.iterrows():
     cpf = str(row["CPF"])
     if cpf.endswith('.0'):
@@ -87,7 +95,7 @@ try:
     if pd.isna(cpf) or cpf == "NaT":
       print("fim")
       break
-    if len(cpf) < 11:
+    if len(cpf) < 5:
       print("fim")
       break
       
@@ -145,6 +153,13 @@ try:
     discriminacao.send_keys("Serviços prestados")
     time.sleep(0.5)  
 
+    #piscofins
+    elemento = "/html/body/div[1]/main/div[2]/div[2]/div/div/wizard/div/div/div/div[1]/form/fieldset[5]/div/piscofins-form/ng-form/div/div/select"
+    piscofins = driver.find_element(By.XPATH, elemento)
+    piscofins.click()
+    piscofins.send_keys("00 - Nenhum")
+    time.sleep(0.5)
+
     #btnProximo
     elemento = "/html/body/div[1]/main/div[2]/div[2]/div/div/wizard/div/div/div/div[1]/form/div/div/button"
     btnProximo = driver.find_element(By.XPATH, elemento)
@@ -184,8 +199,10 @@ try:
     elemento = "/html/body/div[1]/main/div[2]/div[2]/div/div/wizard/div/div/div/div/form/div/div/button[2]"
     btnConcluir = driver.find_element(By.XPATH, elemento)
     if ambiente == "producao":
+
       btnConcluir.click() 
       print(f"Concluir... {i} segundos...", end='\r')
+      i = i +1
       time.sleep(5)
       
 #    btnConcluir.click()
