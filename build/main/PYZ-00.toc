@@ -1,4 +1,4 @@
-('e:\\Projetos\\datavix\\RoboNotaMaceio\\build\\main\\PYZ-00.pyz',
+('E:\\Projetos\\datavix\\RoboNotaMaceio\\build\\main\\PYZ-00.pyz',
  [('__future__',
    'C:\\Users\\Pichau\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\__future__.py',
    'PYMODULE'),
